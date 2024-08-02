@@ -1,3 +1,11 @@
+node{
+echo "the job name is: ${env.JOB_NAME}"
+echo "the node name is: ${env.NODE_NAME}"
+def mavenHome = tool name: 'maven3.9.7'
+stage('checkoutcode'){
+git branch: 'development', credentialsId: '09e62cc3-3dbd-4a7b-b415-ed32bef126e4', url: 'https://github.com/RabsanaShaik/maven-web-application.git'
+}
+
 stage('Build'){
 sh "${mavenHome}/bin/mvn clean package"
 }
